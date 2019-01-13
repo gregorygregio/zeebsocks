@@ -5,6 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "ext-soap": "*",
         "php": ">=7.0.0",
         "cagartner/correios-consulta": "0.1.*",
         "fideloper/proxy": "~3.3",
