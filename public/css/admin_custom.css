@@ -1,0 +1,15 @@
+img.product-img {
+  width: 50px;
+}
+
+
+.table>tbody>tr>td {
+  vertical-align: middle;
+}
+
+
+img.product-main-img {
+  clear: both;
+  width: 380px;
+  border: #333 solid 1px;
+}

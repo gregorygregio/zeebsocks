@@ -1,0 +1,14 @@
+.banner {
+    background: #f7f7f7;
+    height: 300px;
+}
+
+#homeBanner #zeebLogo{
+    position: relative;
+    margin-left: 50%;
+    left: -150px;
+}
+
+#homeBanner #zeebLogo img{
+    height: 300px;
+}

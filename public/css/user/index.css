@@ -1,0 +1,8 @@
+.btn-primary, .panel-heading {
+    font-weight: bold;
+}
+
+
+#formAlert {
+    display: none;
+}

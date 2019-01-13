@@ -1,0 +1,30 @@
+.product-list .product-img {
+    width: 50px;
+}
+
+.product-list thead {
+    font-weight: bold;
+}
+
+.table>tbody>tr>td {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.order-resume .table>tbody>tr>td {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.order-resume .table>tbody>tr>td:nth-of-type(1) {
+    font-size: 1.2em;
+}
+
+.order-resume {
+    position: relative;
+    padding: 0 10px;
+    padding-top: 20px;
+    height: 220px;
+    margin-top: 40%;
+    top: -80px;
+}

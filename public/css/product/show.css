@@ -1,0 +1,22 @@
+.product-img-displayer{
+    border: solid 1px #d3e0e9;
+}
+
+.product-img-displayer img{
+    width: 100%;
+}
+
+.button-add-carrinho .btn-block {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.button-add-carrinho {
+    width: 100%;
+    bottom: 0;
+}
+
+.product-description {
+    padding: 20px 10px;
+    text-align: justify;
+}
