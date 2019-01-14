@@ -40,9 +40,12 @@ class Product extends Model
 
     public function makeThumbImage($realPath) {
       $imageName = $this->main_image;
+      $explodedImageName = explode(".", $imageName);
+      $extension = array_pop($explodedImageName);
       $img = Image::make($realPath);
       $img->resize(320, 320);
       // $img->insert('images/logo.jpeg');
-      $img->save('storage/products/thumbs/' . $this->type_r->type . "/" . $imageName);
+      \Illuminate\Support\Facades\Storage::put('public/products/thumbs/' . $this->type_r->type . "/" . $imageName, $img->fit(200)->stream($extension));
+      //$img->save('storage/products/thumbs/' . $this->type_r->type . "/" . $imageName);
     }
 }
