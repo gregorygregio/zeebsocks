@@ -38,9 +38,9 @@ class Product extends Model
                     ->get();
     }
 
-    public function makeThumbImage() {
+    public function makeThumbImage($realPath) {
       $imageName = $this->main_image;
-      $img = Image::make('storage/products/' . $this->type_r->type . "/" . $imageName);
+      $img = Image::make($realPath);
       $img->resize(320, 320);
       // $img->insert('images/logo.jpeg');
       $img->save('storage/products/thumbs/' . $this->type_r->type . "/" . $imageName);

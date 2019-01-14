@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     $newProduct->main_image = $imageName;
 
-    $newProduct->makeThumbImage();
+    $newProduct->makeThumbImage($request->file("main_image")->getRealPath());
 
     $newProduct->save();
 
