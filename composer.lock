@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5441afc6fe93036ebd2a7096abbc7cd9",
-    "content-hash": "91c1188ad3d602f18ee69f9b9b539e06",
+    "hash": "7eb8f7675da199511016f0df7b4d1325",
+    "content-hash": "1400384f0d3c7cf2b8b8c869720b12ae",
     "packages": [
         {
             "name": "cagartner/correios-consulta",
@@ -4556,6 +4556,7 @@
     "prefer-lowest": false,
     "platform": {
         "ext-soap": "*",
+        "ext-gd": "*",
         "php": ">=7.0.0"
     },
     "platform-dev": []
