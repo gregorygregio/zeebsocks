@@ -87,7 +87,7 @@ class ProductController extends Controller
       $explodeImage = explode("/", $image);
       $imageName = array_pop( $explodeImage );
       $product->main_image = $imageName;
-      $product->makeThumbImage();
+      $product->makeThumbImage($request->file("main_image")->getRealPath());
     }
 
     $product->save();
