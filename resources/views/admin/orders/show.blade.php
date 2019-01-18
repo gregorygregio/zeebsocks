@@ -181,6 +181,33 @@
                   </div>
                 </div>
 
+
+
+                <div class="">
+                  <div class="box-body table-responsive no-padding">
+                      <table class="table table-hover" id="">
+                          <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>QUANTIDADE</th>
+                                <th>VALOR</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                                @foreach($order->items as $item)
+                                <?php $product = $item->product ?>
+                                  <tr>
+                                      <td>{{ $product->name }}</td>
+                                      <td>{{ $item->quantity }}</td>
+                                      <td>{{ $item->total_amount }}</td>
+                                  </tr>
+                                @endforeach
+                          </tbody>
+                        </table>
+                  </div>
+                </div>
+
+
                 <div class="container">
                   <div class="row">
                     <div class="col-lg-2 col-lg-offset-6">
@@ -193,35 +220,6 @@
                     <div class="col-lg-2">
                       <button class="btn btn-danger btn-block"><i class="fa fa-trash-o"></i> Cancelar pedido</button>
                     </div>
-                  </div>
-                </div>
-
-
-                <div class="container">
-                  <div class="row">
-                    @component('admin.lte-components.table', [
-                        "title" => "Pedidos abertos",
-                        "tableId" => "tabelaPedidos"
-                    ])
-
-                      @slot("thead")
-                        <tr>
-                            <th>NOME</th>
-                            <th>QUANTIDADE</th>
-                            <th>VALOR</th>
-                        </tr>
-                      @endslot
-
-                        @foreach($order->items as $item)
-                        <?php $product = $item->product ?>
-                          <tr>
-                              <td>{{ $product->name }}</td>
-                              <td>{{ $item->quantity }}</td>
-                              <td>{{ $item->total_amount }}</td>
-                          </tr>
-                        @endforeach
-                    @endcomponent
-
                   </div>
                 </div>
 
