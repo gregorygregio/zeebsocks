@@ -89,9 +89,7 @@ Route::post('/pagseguro/notification', [
 ]);
 
 
-Route::get('sendhtmlemail', function() {
-
-
+Route::get('scheduleemail', function() {
     $job = (new App\Jobs\SendTestMailJob)
         ->delay( Carbon\Carbon::now()->addSeconds(15) );
     dispatch($job);
@@ -102,5 +100,10 @@ Route::get('sendhtmlemail', function() {
       //     $message->from('xyz@gmail.com','Virat Gandhi');
       //  });
        echo "HTML Email Sent. Check your inbox.";
+});
 
+Route::get('sendhtmlemail', function() {
+  Mail::to('gregorygregio27@gmail.com', 'Gregory Gregio')
+  ->send(new App\Mail\SendTestEmail("nome"));
+       echo "HTML Email Sent. Check your inbox.";
 });
