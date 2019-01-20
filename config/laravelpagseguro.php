@@ -28,8 +28,9 @@ return [
         ],
         'notification' => [
             'callback' => function ($information) { // Callable
-                \Log::debug(print_r("MNHA NOTIFICACAO DE pagamento", 1));
-                \Log::debug(print_r($information, 1));
+                  $job = (new App\Jobs\SendTestMailJob)
+                      ->delay( Carbon\Carbon::now()->addSeconds(15) );
+                  dispatch($job);
               },
               'credential' => 'default',
               'route-name' => 'pagseguro.notification', // Nome da rota

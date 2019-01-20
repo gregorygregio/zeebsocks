@@ -13,9 +13,9 @@ class AdminUserSeeder extends Seeder
     {
         $adm = new App\User;
         $adm->name = "adm";
-        $adm->email = "adm@email.com";
+        $adm->email = env("ADM_EMAIL");
         $adm->cpf = '11111111111';
-        $adm->password = Hash::make('123456');
+        $adm->password = env("ADM_PASSWORD");
         $adm->permission = 1;
         $adm->save();
     }

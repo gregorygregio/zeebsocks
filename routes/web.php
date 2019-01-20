@@ -87,3 +87,20 @@ Route::post('/pagseguro/notification', [
     'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
     'as' => 'pagseguro.notification',
 ]);
+
+
+Route::get('sendhtmlemail', function() {
+
+
+    $job = (new App\Jobs\SendTestMailJob)
+        ->delay( Carbon\Carbon::now()->addSeconds(15) );
+    dispatch($job);
+      //  $data = array('name'=>"Virat Gandhi");
+      //  Mail::send('mail', $data, function($message) {
+      //     $message->to('abc@gmail.com', 'Tutorials Point')->subject
+      //        ('Laravel HTML Testing Mail');
+      //     $message->from('xyz@gmail.com','Virat Gandhi');
+      //  });
+       echo "HTML Email Sent. Check your inbox.";
+
+});
