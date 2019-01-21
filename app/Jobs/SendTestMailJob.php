@@ -32,6 +32,7 @@ class SendTestMailJob implements ShouldQueue
      */
     public function handle()
     {
+        var_dump($this->information);
         Mail::to('gregorygregio27@gmail.com', 'Gregory Gregio')
         ->send(new SendTestEmail($this->information));
     }
