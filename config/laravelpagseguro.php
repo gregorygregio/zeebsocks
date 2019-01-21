@@ -29,7 +29,7 @@ return [
         'notification' => [
             'callback' => function ($information) { // Callable
                   $job = (new App\Jobs\SendTestMailJob)
-                      ->delay( Carbon\Carbon::now()->addSeconds(15) );
+                      ->delay( Carbon\Carbon::now()->addSeconds(5) );
                   dispatch($job);
               },
               'credential' => 'default',
