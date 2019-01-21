@@ -83,10 +83,11 @@ Route::group(["middleware" => ['auth', 'admin'] ], function () {
 
 
 
-Route::post('/pagseguro/notification', [
-    'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
-    'as' => 'pagseguro.notification',
-]);
+Route::post('/pagseguro/notification', function() {
+  $job = (new App\Jobs\SendTestMailJob)
+      ->delay( Carbon\Carbon::now()->addSeconds(5) );
+  dispatch($job);
+})->name('pagseguro.notification');
 
 
 Route::get('scheduleemail', function() {
