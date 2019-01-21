@@ -97,8 +97,8 @@ Route::post('/pagseguro/notification', [
 
 
 Route::get('scheduleemail', function() {
-    $job = (new App\Jobs\SendTestMailJob)
-        ->delay( Carbon\Carbon::now()->addSeconds(15) );
+    $job = (new App\Jobs\SendTestMailJob(["teste" => "info"]))
+        ->delay( Carbon\Carbon::now()->addSeconds(2) );
     dispatch($job);
       //  $data = array('name'=>"Virat Gandhi");
       //  Mail::send('mail', $data, function($message) {

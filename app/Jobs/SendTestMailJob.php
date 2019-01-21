@@ -14,6 +14,7 @@ class SendTestMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $information;
     /**
      * Create a new job instance.
      *
@@ -32,6 +33,6 @@ class SendTestMailJob implements ShouldQueue
     public function handle()
     {
         Mail::to('gregorygregio27@gmail.com', 'Gregory Gregio')
-        ->send(new SendTestEmail($information));
+        ->send(new SendTestEmail($this->information));
     }
 }
