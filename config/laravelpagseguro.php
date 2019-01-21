@@ -28,6 +28,7 @@ return [
         ],
         'notification' => [
             'callback' => function ($information) { // Callable
+              var_dump($information);
                   $job = (new App\Jobs\SendTestMailJob($information))
                       ->delay( Carbon\Carbon::now()->addSeconds(5) );
                   dispatch($job);
