@@ -16,9 +16,9 @@ class SendTestEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($information)
     {
-        $this->name = $name;
+        $this->information = $information;
     }
 
     /**
@@ -30,6 +30,6 @@ class SendTestEmail extends Mailable
     {
         return $this->from('gregorygregio27@gmail.com','Virat Gandhi')
         ->subject('Notificacao Pago')
-        ->view('mails.testEmail', [ "name" => $this->name]);
+        ->view('mails.testEmail', [ "info" => json_encode()$this->information) ]);
     }
 }

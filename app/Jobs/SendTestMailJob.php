@@ -19,9 +19,9 @@ class SendTestMailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($information)
     {
-        //
+        $this->information = $information;
     }
 
     /**
@@ -32,6 +32,6 @@ class SendTestMailJob implements ShouldQueue
     public function handle()
     {
         Mail::to('gregorygregio27@gmail.com', 'Gregory Gregio')
-        ->send(new SendTestEmail("nome"));
+        ->send(new SendTestEmail($information));
     }
 }
