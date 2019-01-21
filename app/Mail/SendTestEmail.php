@@ -30,6 +30,6 @@ class SendTestEmail extends Mailable
     {
         return $this->from('gregorygregio27@gmail.com','Virat Gandhi')
         ->subject('Notificacao Pago')
-        ->view('mails.testEmail', [ "info" => json_encode()$this->information) ]);
+        ->view('mails.testEmail', [ "info" => json_encode($this->information) ]);
     }
 }
