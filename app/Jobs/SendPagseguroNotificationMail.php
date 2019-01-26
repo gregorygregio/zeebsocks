@@ -36,13 +36,15 @@ class SendPagseguroNotificationMail implements ShouldQueue
           try{
             echo "Iniciando handle";
             $information = $this->information;
+            var_dump($information);
+            echo "__________________";
             $orderId = $information->getReference();
             var_dump($orderId);
             echo "__________________";
             $order = Order::find($orderId);
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
-              
+
             var_dump($order);
             echo "__________________";
             $order->status = $information->getStatus();
