@@ -114,3 +114,18 @@ Route::get('sendhtmlemail', function() {
   ->send(new App\Mail\SendTestEmail("nome"));
        echo "HTML Email Sent. Check your inbox.";
 });
+
+Route::get('teste', function() {
+  echo "Iniciando handle";
+  $orderId = 123;
+  $order = App\Entities\Order::find($orderId);
+  if(is_null($order))
+    throw new \Exception("Não existe pedido com id $orderId !");
+
+  var_dump($order);
+  echo "__________________";
+  //$order->status = 1;
+  // $client = $order->client;
+  var_dump($client);
+  echo "__________________";
+});

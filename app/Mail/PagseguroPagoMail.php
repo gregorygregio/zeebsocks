@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class PagseguroPagoMail extends Mailable
 {
     use Queueable, SerializesModels;
+    private $information;
 
     /**
      * Create a new message instance.
@@ -28,8 +29,8 @@ class PagseguroPagoMail extends Mailable
       */
      public function build()
      {
-         return $this->from('gregorygregio27@gmail.com','Virat Gandhi')
-         ->subject('Notificacao Pago')
+         return $this->from('contato@zeebsocks.com','Virat Gandhi')
+         ->subject('Notificacao Zeeb')
          ->view('mails.testEmail', [ "info" => json_encode($this->information) ]);
      }
 }
