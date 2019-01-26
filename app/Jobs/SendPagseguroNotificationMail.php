@@ -47,7 +47,8 @@ class SendPagseguroNotificationMail implements ShouldQueue
             Mail::to($client->email, $client->name)
             ->send(new PagseguroPagoMail($this->information));
           }catch(\Exception $e){
-              echo $e->getMessage();
+            Mail::to("gregorygregio27@gmail.com", "Zeeb")
+            ->send(new PagseguroPagoMail($e->getMessage()));
           }
       }
 }
