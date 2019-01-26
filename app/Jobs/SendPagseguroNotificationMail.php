@@ -31,20 +31,21 @@ class SendPagseguroNotificationMail implements ShouldQueue
       public function handle()
       {
           try{
-            echo "Iniciando handle";
-            $information = $this->information;
-            $orderId = $information->getReference();
-            var_dump($orderId);
-            echo "__________________";
-            $order = Order::find($orderId);
-            var_dump($order);
-            echo "__________________";
-            $order->status = $information->getStatus();
-            $client = $order->client;
-            var_dump($client);
-            echo "__________________";
+            // echo "Iniciando handle";
+            // $information = $this->information;
+            // $orderId = $information->getReference();
+            // var_dump($orderId);
+            // echo "__________________";
+            // $order = Order::find($orderId);
+            // var_dump($order);
+            // echo "__________________";
+            // $order->status = $information->getStatus();
+            // $client = $order->client;
+            // var_dump($client);
+            // echo "__________________";
 
-            Mail::to($client->email, $client->name)
+            // Mail::to($client->email, $client->name)
+            Mail::to("gregorygregio27@gmail.com", "Zeeb")
             ->send(new PagseguroPagoMail($this->information));
           }catch(\Exception $e){
             Mail::to("gregorygregio27@gmail.com", "Zeeb")
