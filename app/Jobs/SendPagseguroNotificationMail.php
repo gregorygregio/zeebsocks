@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use laravel\pagseguro\Transaction\Information\Information;
-use App\Mail\PagseguroPagoMail
+use App\Mail\PagseguroPagoMail;
 
 class SendPagseguroNotificationMail implements ShouldQueue
 {
