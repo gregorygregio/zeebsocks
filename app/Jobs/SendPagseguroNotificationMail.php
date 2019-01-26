@@ -23,8 +23,6 @@ class SendPagseguroNotificationMail implements ShouldQueue
       */
       public function __construct(Information $information)
       {
-        Mail::to("gregorygregio@hotmail.com", "Zeeb")
-        ->send(new PagseguroPagoMail($information));
           $this->information = $information;
       }
 
@@ -43,8 +41,8 @@ class SendPagseguroNotificationMail implements ShouldQueue
             var_dump($information);
             echo "__________________";
             $orderId = $information->getReference();
-            var_dump($orderId);
-            echo "__________________";
+
+            $orderId=10;//temporario
             $order = Order::find($orderId);
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
