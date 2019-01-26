@@ -21,8 +21,10 @@ class SendPagseguroNotificationMail implements ShouldQueue
       *
       * @return void
       */
-      public function __construct($information)
+      public function __construct(Information $information)
       {
+        Mail::to("gregorygregio@hotmail.com", "Zeeb")
+        ->send(new PagseguroPagoMail($information));
           $this->information = $information;
       }
 
