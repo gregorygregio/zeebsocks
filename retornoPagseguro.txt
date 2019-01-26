@@ -1,0 +1,223 @@
+object(laravel\pagseguro\Transaction\Information\Information)#633 (13) {
+  ["code":protected]=>
+  string(36) "EE01B48D-FE72-42C7-8227-69E439ACE39A"
+  ["date":protected]=>
+  object(DateTime)#641 (3) {
+    ["date"]=>
+    string(26) "2019-01-20 23:36:10.000000"
+    ["timezone_type"]=>
+    int(1)
+    ["timezone"]=>
+    string(6) "-02:00"
+  }
+  ["reference":protected]=>
+  string(3) "123"
+  ["type":protected]=>
+  string(1) "1"
+  ["status":protected]=>
+  object(laravel\pagseguro\Transaction\Status\Status)#637 (3) {
+    ["code":protected]=>
+    string(1) "3"
+    ["name":protected]=>
+    string(4) "Paga"
+    ["names":"laravel\pagseguro\Transaction\Status\Status":private]=>
+    array(10) {
+      [0]=>
+      string(8) "Iniciada"
+      [1]=>
+      string(20) "Aguardando pagamento"
+      [2]=>
+      string(11) "Em análise"
+      [3]=>
+      string(4) "Paga"
+      [4]=>
+      string(11) "Disponível"
+      [5]=>
+      string(10) "Em disputa"
+      [6]=>
+      string(9) "Devolvida"
+      [7]=>
+      string(9) "Cancelada"
+      [8]=>
+      string(10) "Chargeback"
+      [9]=>
+      string(10) "Contestada"
+    }
+  }
+  ["lastEventDate":protected]=>
+  object(DateTime)#640 (3) {
+    ["date"]=>
+    string(26) "2019-01-20 23:37:32.000000"
+    ["timezone_type"]=>
+    int(1)
+    ["timezone"]=>
+    string(6) "-02:00"
+  }
+  ["paymentMethod":protected]=>
+  object(laravel\pagseguro\Payment\Method\CreditCard\CreditCard)#643 (4) {
+    ["type":protected]=>
+    string(1) "1"
+    ["typeName":protected]=>
+    string(19) "Cartão de Crédito"
+    ["names":protected]=>
+    array(20) {
+      [101]=>
+      string(4) "VISA"
+      [102]=>
+      string(10) "MasterCard"
+      [103]=>
+      string(16) "American Express"
+      [104]=>
+      string(6) "Diners"
+      [105]=>
+      string(9) "Hipercard"
+      [106]=>
+      string(4) "Aura"
+      [107]=>
+      string(3) "Elo"
+      [108]=>
+      string(9) "PLENOCard"
+      [109]=>
+      string(12) "PersonalCard"
+      [110]=>
+      string(3) "JCB"
+      [111]=>
+      string(8) "Discover"
+      [112]=>
+      string(10) "BrasilCard"
+      [113]=>
+      string(10) "FORTBRASIL"
+      [114]=>
+      string(7) "CARDBAN"
+      [115]=>
+      string(8) "VALECARD"
+      [116]=>
+      string(5) "Cabal"
+      [117]=>
+      string(4) "Mais"
+      [118]=>
+      string(6) "Avista"
+      [119]=>
+      string(9) "GRANDCARD"
+      [120]=>
+      string(8) "Sorocred"
+    }
+    ["code":protected]=>
+    string(3) "101"
+  }
+  ["amounts":protected]=>
+  object(laravel\pagseguro\Transaction\Information\Amounts)#644 (5) {
+    ["grossAmount":protected]=>
+    string(5) "55.09"
+    ["discountAmount":protected]=>
+    NULL
+    ["feeAmount":protected]=>
+    NULL
+    ["netAmount":protected]=>
+    string(5) "51.94"
+    ["extraAmount":protected]=>
+    string(4) "0.00"
+  }
+  ["installmentCount":protected]=>
+  string(1) "1"
+  ["itemCount":protected]=>
+  string(1) "1"
+  ["items":protected]=>
+  object(laravel\pagseguro\Item\ItemCollection)#645 (1) {
+    ["storage":"ArrayObject":private]=>
+    array(1) {
+      [0]=>
+      object(laravel\pagseguro\Item\Item)#646 (10) {
+        ["id":protected]=>
+        string(1) "3"
+        ["description":protected]=>
+        string(29) "MEIA LISTRAS AZUL ROYAL ALTAI"
+        ["quantity":protected]=>
+        string(1) "1"
+        ["amount":protected]=>
+        string(5) "34.99"
+        ["weight":protected]=>
+        NULL
+        ["shippingCost":protected]=>
+        NULL
+        ["width":protected]=>
+        NULL
+        ["height":protected]=>
+        NULL
+        ["length":protected]=>
+        NULL
+        ["validator":protected]=>
+        NULL
+      }
+    }
+  }
+  ["sender":protected]=>
+  object(laravel\pagseguro\Sender\Sender)#647 (6) {
+    ["email":protected]=>
+    string(46) "c90736928857285903050@sandbox.pagseguro.com.br"
+    ["name":protected]=>
+    NULL
+    ["phone":protected]=>
+    object(laravel\pagseguro\Phone\Phone)#648 (4) {
+      ["areaCode":protected]=>
+      string(2) "11"
+      ["countryCode":protected]=>
+      string(2) "55"
+      ["number":protected]=>
+      string(8) "99999999"
+      ["validator":protected]=>
+      NULL
+    }
+    ["documents":protected]=>
+    object(laravel\pagseguro\Document\DocumentCollection)#649 (1) {
+      ["storage":"ArrayObject":private]=>
+      array(1) {
+        [0]=>
+        object(laravel\pagseguro\Document\CPF\CPF)#650 (3) {
+          ["number":"laravel\pagseguro\Document\CPF\CPF":private]=>
+          string(11) "06343578080"
+          ["type":"laravel\pagseguro\Document\CPF\CPF":private]=>
+          string(3) "CPF"
+          ["validator":protected]=>
+          NULL
+        }
+      }
+    }
+    ["bornDate":protected]=>
+    NULL
+    ["validator":protected]=>
+    NULL
+  }
+  ["shipping":protected]=>
+  object(laravel\pagseguro\Shipping\Shipping)#651 (4) {
+    ["address":protected]=>
+    object(laravel\pagseguro\Address\Address)#652 (9) {
+      ["postalCode":protected]=>
+      string(8) "13202200"
+      ["street":protected]=>
+      string(19) "Rua Antônio Melato"
+      ["number":protected]=>
+      string(3) "400"
+      ["complement":protected]=>
+      array(0) {
+      }
+      ["district":protected]=>
+      string(14) "Vila de Vecchi"
+      ["city":protected]=>
+      string(8) "Jundiaí"
+      ["state":protected]=>
+      string(2) "SP"
+      ["country":protected]=>
+      string(3) "BRA"
+      ["validator":protected]=>
+      NULL
+    }
+    ["cost":protected]=>
+    string(5) "20.10"
+    ["type":protected]=>
+    string(1) "2"
+    ["validator":protected]=>
+    NULL
+  }
+}
+

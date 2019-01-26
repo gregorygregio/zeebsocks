@@ -68,6 +68,28 @@ class PedidoController extends Controller
 
         $valorDoFrete = $frete["valor"];
 
+
+        $items_total = $cart->getTotalPrice();
+
+        $cart->user_id = $user->id;
+        $cart->zipcode = $address->zipcode;
+        $cart->frete = $valorDoFrete;
+        $cart->items_total = $items_total;
+        $cart->order_total = $items_total + $valorDoFrete;
+        $cart->status = 0;
+
+
+        $cart->save();
+
+        $cart->items->each(function ($item) use ($cart) {
+            $item->total_amount = $item->getTotalPrice();
+            $item->order_id = $cart->id;
+            $item->save();
+        });
+
+        session()->remove("cart");
+
+
         $data = [
             'items' => $pagseguroItems,
             'shipping' => [
@@ -83,7 +105,7 @@ class PedidoController extends Controller
                 'type' => 2,
                 'cost' => $valorDoFrete,
             ],
-            'reference' => '123'
+            'reference' => $cart->id
         ];
 
 
@@ -93,28 +115,7 @@ class PedidoController extends Controller
         $credentials = PagSeguro::credentials()->get();
         $information = $checkout->send($credentials); // Retorna um objeto de laravel\pagseguro\Checkout\Information\Information
         if ($information) {
-            $items_total = $cart->getTotalPrice();
-
-            $cart->user_id = $user->id;
-            $cart->zipcode = $address->zipcode;
-            $cart->frete = $valorDoFrete;
-            $cart->items_total = $items_total;
-            $cart->order_total = $items_total + $valorDoFrete;
-            $cart->status = 0;
-
-
-            $cart->save();
-
-            $cart->items->each(function ($item) use ($cart) {
-                $item->total_amount = $item->getTotalPrice();
-                $item->order_id = $cart->id;
-                $item->save();
-            });
-
-            session()->remove("cart");
-
             return Redirect::to($information->getLink());
-
         }
     }
 

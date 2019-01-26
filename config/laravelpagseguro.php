@@ -28,7 +28,7 @@ return [
         ],
         'notification' => [
             'callback' => function ($information) { // Callable
-                  $job = (new App\Jobs\SendTestMailJob($information))
+                  $job = (new App\Jobs\SendPagseguroNotificationMail($information))
                       ->delay( Carbon\Carbon::now()->addSeconds(5) );
                   dispatch($job);
               },
