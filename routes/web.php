@@ -116,16 +116,8 @@ Route::get('sendhtmlemail', function() {
 });
 
 Route::get('teste', function() {
-  echo "Iniciando handle";
-  $orderId = 123;
+  $orderId=2;//temporario
   $order = App\Entities\Order::find($orderId);
-  if(is_null($order))
-    throw new \Exception("Não existe pedido com id $orderId !");
-
-  var_dump($order);
-  echo "__________________";
-  //$order->status = 1;
-  // $client = $order->client;
-  var_dump($client);
-  echo "__________________";
+  // dd($order);
+  return view("mails.pagseguro.statusPago", [ "order" => $order ]);
 });

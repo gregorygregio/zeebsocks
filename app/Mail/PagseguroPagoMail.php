@@ -6,20 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Entities\Order;
 
 class PagseguroPagoMail extends Mailable
 {
     use Queueable, SerializesModels;
-    private $information;
+    private $order;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-     public function __construct($information)
+     public function __construct(Order $order)
      {
-         $this->information = $information;
+         $this->order = $order;
      }
 
      /**
@@ -29,8 +30,8 @@ class PagseguroPagoMail extends Mailable
       */
      public function build()
      {
-         return $this->from('contato@zeebsocks.com','Virat Gandhi')
-         ->subject('Notificacao Zeeb')
-         ->view('mails.testEmail', [ "info" => json_encode($this->information) ]);
+         return $this->from('contato@zeebsocks.com','Contato Zeeb')
+         ->subject('Notificacao Zeeb - Pagamento de pedido aceito !')
+         ->view('mails.pagseguro.statusPago', [ "order" => $this->order ]);
      }
 }

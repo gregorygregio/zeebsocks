@@ -50,7 +50,7 @@ class SendPagseguroNotificationMail implements ShouldQueue
             $datePayment = $information->getDate();
 
             Mail::to($client->email, $client->name)
-            ->send(new PagseguroPagoMail($this->information));
+            ->send(new PagseguroPagoMail($order));
           } catch(\Exception $e){
             Mail::to("suporte@zeebsocks.com", "ZeebError")
             ->send(new PagseguroPagoMail("Error: " . $e->getMessage()));
