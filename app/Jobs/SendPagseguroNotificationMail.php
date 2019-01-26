@@ -38,6 +38,8 @@ class SendPagseguroNotificationMail implements ShouldQueue
           try{
             echo "Iniciando handle";
             $information = $this->information;
+            if(is_null($information))
+              throw new \Exception("Pagseguro information não definida");
             var_dump($information);
             echo "__________________";
             $orderId = $information->getReference();
