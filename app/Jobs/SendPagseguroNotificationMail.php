@@ -34,28 +34,22 @@ class SendPagseguroNotificationMail implements ShouldQueue
        public function handle()
       {
           try{
-            echo "Iniciando handle";
             $information = $this->information;
             if(is_null($information))
               throw new \Exception("Pagseguro information não definida");
             var_dump($information);
-            echo "__________________";
-            $orderId = $information->getReference();
 
             $orderId=10;//temporario
             $order = Order::find($orderId);
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
 
-            var_dump($order);
-            echo "__________________";
             $order->status = $information->getStatus();
             $client = $order->client;
-            var_dump($client);
-            echo "__________________";
 
-            // Mail::to($client->email, $client->name)
-            Mail::to("gregorygregio@hotmail.com", "Zeeb")
+            $datePayment = $information->getDate();
+
+            Mail::to($client->email, $client->name)
             ->send(new PagseguroPagoMail($this->information));
           } catch(\Exception $e){
             Mail::to("suporte@zeebsocks.com", "ZeebError")
