@@ -85,4 +85,9 @@ class User extends Authenticatable
         return $this->permission === 1;
     }
 
+    public function getFirstName(){
+      $splitedName =explode(" ", $this->name);
+      return array_shift($splitedName);
+    }
+
 }

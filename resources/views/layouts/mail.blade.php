@@ -10,90 +10,114 @@
 
     <title>Zeeb | @yield('title')</title>
 
-    <!-- Styles -->
+    <style>
+      body {
+        font-family: Raleway,sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #636b6f;
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+      *, :after, :before {
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      nav.navbar, .navbar-space-bot{
+          min-height: 50px;
+      }
+      nav.navbar{
+          position: fixed;
+          border: 1px solid transparent;
+          border-bottom-color: #d3e0e9;
+          box-shadow: 0 1px 3px #d3e0e9;
+          width: 100vw;
+          top: 0;
+          border-radius: 0;
+          z-index: 1000;
+          background-color: #fff;
+      }
+      .container{
+          width: 84%;
+          margin-right: auto;
+          margin-left: auto;
+          padding-left: 15px;
+          padding-right: 15px;
+      }
+      .navbar-header {
+          float: left;
+      }
+      .navbar-brand {
+          float: left;
+          padding: 14px 15px;
+          font-size: 20px;
+          line-height: 22px;
+          height: 50px;
+          color: #777;
+          margin-left: -15px;
+          text-decoration: none;
+          background-color: transparent;
+      }
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    @yield('custom-css-links')
+      .banner{
+        width: 100%;
+        text-align: center;
+        background-color: #f5f8fa;
+        height: 160px;
+      }
+      #zeebLogo {
+        float: left;
+        width: 160px;
+        margin: auto;
+      }
+      #zeebLogo img{
+        width: 100%;
+      }
+      .banner-title{
+        font-size: 36px;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 100px;
+        padding-top: 40px;
+        margin-left: 160px;
+      }
+      .content{
+        font-size: 26px;
+      }
+      @yield('custom-css-links')
+    </style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route("home") }}">
-                        Zeeb Socks
-                    </a>
-                </div>
-
-            </div>
-        </nav>
-
-        <div class="navbar-space-bot"></div>
-
-        <div class="container">
-            <div class="row">
-              <div class="col-md-10 col-xs-12">
-                @yield('content')
-              </div>
-
-              <div class="col-md-2 col-xs-12 text-center">
-              </div>
-            </div>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="{{ route("home") }}" target="_blank">
+                Zeeb Socks
+            </a>
         </div>
+      </div>
+    </nav>
+
+    <div class="navbar-space-bot"></div>
+
+    <div class="banner">
+      <div id="zeebLogo">
+          <img src="{{ asset("/images/logo.jpeg") }}"/>
+      </div>
+      <div class="banner-title">
+        @yield('main-message')
+      </div>
     </div>
-</body>
 
 
-
-<footer>
-    <div class="container">
-        <div class="row">
-
-
-
-
-
-            <!-- LOGO -->
-            <div class="col-md-4 col-xs-12 text-center">
-                <img src="{{ asset("/images/logo.jpeg") }}" class="logo"/>
-            </div>
-
-
-
-
-
-
-
-
-            <!-- CONTATO -->
-            <div class="col-md-4 col-xs-12 ">
-                <div class="info-contato text-center">
-
-                    <br>
-                    <br>
-                    <h3><i class="fa fa-phone "></i> (11) 99999-9999</h3>
-                    <h3><i class="fa fa-envelope"></i> contato@zeebsocks.com</h3>
-
-                </div>
-            </div>
-
-
-
-
-            <div class="col-md-4 col-xs-12 ">
-              <div class="social-media">
-                  <a>
-                      <img src="{{ asset("/images/facebook.png") }}" />
-                  </a>
-                  <a>
-                      <img src="{{ asset("/images/instagram.png") }}" />
-                  </a>
-              </div>
-            </div>
-        </div>
+    <div class="container content">
+      @yield('content')
     </div>
-</footer>
+
 </html>

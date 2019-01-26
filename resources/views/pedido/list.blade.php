@@ -29,7 +29,6 @@
 
 
                     <br>
-
                     @foreach($orders as $order)
                     <div class="order-box">
                         <div class="order-head-info">
@@ -47,7 +46,7 @@
                                         <td>Total</td>
                                     </tr>
                                     <tr>
-                                        <td>{{ $order->getOrderData() }}</td>
+                                        <td>{{ $order->getOrderDate() }}</td>
                                         <td>{{ $order->zipcode }}</td>
                                         <td>R$ {{ $order->order_total }}</td>
                                     </tr>
