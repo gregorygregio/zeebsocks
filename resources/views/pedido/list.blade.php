@@ -34,7 +34,7 @@
                         <div class="order-head-info">
 
                             <div class="pull-right">
-                                Número do pedido: {{ $order->id }}
+                                Código do pedido: {{ $order->id }}
                             </div>
 
 

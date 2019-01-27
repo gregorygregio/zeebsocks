@@ -16,7 +16,7 @@
           vertical-align: top;
         }
         .tiger-image {
-          width: 18%;
+          width: 16%;
           display:inline-block;
         }
         .tiger-image img{
@@ -24,7 +24,7 @@
         }
 
         .pedido-table{
-          width: 80%;
+          width: 82%;
         }
     }
 
@@ -63,7 +63,7 @@
 @section('content')
 
     <p>
-      Olá, {{ $order->client->getFirstName() }} ! O seu pagamento pelo pedido de códio {{ $order->id }} foi confirmado. O seu pedido deverá ser enviado em breve.
+      Olá, {{ $order->client->getFirstName() }} ! O seu pagamento pelo pedido de código {{ $order->id }} foi confirmado. O seu pedido deverá ser enviado em breve.
     </p>
 
     <div class="pedido-items">
@@ -96,7 +96,7 @@
             <tfoot>
               <tr>
                   <td>
-                    Número do pedido: {{ $order->id }}
+                    Código do pedido: {{ $order->id }}
                   </td>
                   <td></td>
                   <td></td>

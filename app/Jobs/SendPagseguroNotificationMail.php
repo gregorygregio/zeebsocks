@@ -37,7 +37,6 @@ class SendPagseguroNotificationMail implements ShouldQueue
             $information = $this->information;
             if(is_null($information))
               throw new \Exception("Pagseguro information não definida");
-            var_dump($information);
 
             $orderId=10;//temporario
             $order = Order::find($orderId);

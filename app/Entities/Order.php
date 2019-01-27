@@ -67,6 +67,27 @@ class Order extends Model
         })->toArray();
     }
 
+    public function fetchPagseguroOrderData(){
+      $address = $this->client->address;
+      return [
+          'items' => $this->getPagseguroItems(),
+          'shipping' => [
+              'address' => [
+                  'postalCode' => $address->zipcode,
+                  'street' => $address->address,
+                  'number' => $address->number,
+                  'district' => $address->bairro,
+                  'city' => $address->city,
+                  'state' => $address->state,
+                  'country' => $address->country,
+              ],
+              'type' => 2,
+              'cost' => $this->frete,
+          ],
+          'reference' => $this->id
+      ];
+    }
+
     public function setZipcodeAttribute($value)
     {
         $this->attributes['zipcode'] = preg_replace('/[^0-9]/s', '', $value);
@@ -81,6 +102,8 @@ class Order extends Model
     public function isEmpty(){
         return (count($this->items) < 1);
     }
+
+
 
     protected $guarded = ['id'];
 }

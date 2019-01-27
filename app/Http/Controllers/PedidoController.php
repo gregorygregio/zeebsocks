@@ -64,13 +64,8 @@ class PedidoController extends Controller
         $cart = $this->getCart();
         $frete = FreteService::calcularFrete($address->zipcode);
 
-        $pagseguroItems = $cart->getPagseguroItems();
-
-        $valorDoFrete = $frete["valor"];
-
-
         $items_total = $cart->getTotalPrice();
-
+        $valorDoFrete = $frete["valor"];
         $cart->user_id = $user->id;
         $cart->zipcode = $address->zipcode;
         $cart->frete = $valorDoFrete;
@@ -87,29 +82,11 @@ class PedidoController extends Controller
             $item->save();
         });
 
+        $pagseguroData = $cart->fetchPagseguroOrderData();
+
         session()->remove("cart");
 
-
-        $data = [
-            'items' => $pagseguroItems,
-            'shipping' => [
-                'address' => [
-                    'postalCode' => $address->zipcode,
-                    'street' => $address->address,
-                    'number' => $address->number,
-                    'district' => $address->bairro,
-                    'city' => $address->city,
-                    'state' => $address->state,
-                    'country' => $address->country,
-                ],
-                'type' => 2,
-                'cost' => $valorDoFrete,
-            ],
-            'reference' => $cart->id
-        ];
-
-
-        $checkout = PagSeguro::checkout()->createFromArray($data);
+        $checkout = PagSeguro::checkout()->createFromArray($pagseguroData);
         //dd($checkout);
 
         $credentials = PagSeguro::credentials()->get();
