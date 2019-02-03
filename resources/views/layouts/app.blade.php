@@ -157,7 +157,7 @@
 
             <div class="col-md-4 col-xs-12">
                 <h3>Entre em contato conosco</h3>
-                <form id="contactForm" href="#" method="post">
+                <form id="contactForm" action="{{ route('contactmail') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <input type="text" class="form-control" id="contactFormName" placeholder="Nome" name="name">
@@ -168,7 +168,19 @@
                     <div class="form-group">
                         <textarea class="form-control" id="contactFormMessage" placeholder="Mensagem" rows="3" name="message"></textarea>
                     </div>
-                    <!--TODO FUNCIONALIDADE DO CONTACT FORM -->
+
+
+                    @if(session('success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('success')  }}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger text-center">
+                            {{ session('error')  }}
+                        </div>
+                    @endif
+
+
                     <button class="btn btn-primary pull-right">
                         ENVIAR
                     </button>

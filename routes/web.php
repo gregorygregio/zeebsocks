@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/home/contactmail', 'HomeController@sendContactMail')->name('contactmail');
+
 Route::get('/product/{product}', "HomeController@showProduct");
 
 
