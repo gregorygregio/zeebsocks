@@ -24,6 +24,18 @@ class Order extends Model
     public static function getStatusCodeByName($status){
         return array_flip(self::ORDER_STATUS)[$status];
     }
+    public function setStatusCodeByPagseguroStatus($pagseguroStatus){
+
+        $status = [
+            2 =>  self::STATUS_PENDENTE,
+            3 =>  self::STATUS_PAGO,
+            7 =>  self::STATUS_CANCELADO,
+        ][$pagseguroStatus];
+        if(is_null($status))
+          throw new Exception("Status Pagseguro Desconhecido", 1);
+
+        $this->status = $status;
+    }
 
     public function items() {
         return $this->hasMany("App\Entities\OrderItem");

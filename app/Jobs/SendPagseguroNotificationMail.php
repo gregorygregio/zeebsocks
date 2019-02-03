@@ -43,8 +43,10 @@ class SendPagseguroNotificationMail implements ShouldQueue
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
 
-            $order->status = $information->getStatus();
+            $order->setStatusCodeByPagseguroStatus($information->getStatus());
+            $order->save();
             $client = $order->client;
+
 
             $datePayment = $information->getDate();
 
