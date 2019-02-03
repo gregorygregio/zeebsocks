@@ -40,13 +40,17 @@ class SendPagseguroNotificationMail implements ShouldQueue
 
             $orderId=10;//temporario
             $order = Order::find($orderId);
+            var_dump($order->status);
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
 
 
             try {
+              var_dump("inicio try");
               $order->setStatusCodeByPagseguroStatus($information->getStatus());
+              var_dump("status devidadmente setado");
               $order->save();
+              var_dump("salvo");
             } catch (\Exception $e) {
                 throw new \Exception($e->getMessage() . "<br>" . json_encode($information));
             }
