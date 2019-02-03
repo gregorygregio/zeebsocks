@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use laravel\pagseguro\Transaction\Information\Information;
 use App\Mail\PagseguroPagoMail;
+use App\Mail\ErrorMail;
 use Mail;
 use App\Entities\Order;
 
@@ -47,12 +48,12 @@ class SendPagseguroNotificationMail implements ShouldQueue
 
             try {
               var_dump("inicio try");
-              var_dump($information->getStatus());
+              var_dump($information->getStatus()->getCode());
               var_dump("-----------");
               var_dump("-----------");
               var_dump("-----------");
               var_dump("-----------");
-              $order->setStatusCodeByPagseguroStatus($information->getStatus());
+              $order->setStatusCodeByPagseguroStatus($information->getStatus()->getCode());
               var_dump("status devidadmente setado");
               $order->save();
               var_dump("salvo");
@@ -68,8 +69,8 @@ class SendPagseguroNotificationMail implements ShouldQueue
 
             Mail::to($client->email, $client->name)
             ->send(new PagseguroPagoMail($order));
-          } catch(\Exception $e){
-            Mail::send(new App\Mail\ErrorMail("Error: " . $e->getMessage()));
+          } catch(\Exception $e) {
+            Mail::send(new ErrorMail("Error: " . $e->getMessage()));
           }
       }
 }

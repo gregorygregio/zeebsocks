@@ -121,7 +121,7 @@ Route::get('teste', function() {
   $orderId=2;//temporario
   $order = App\Entities\Order::find($orderId);
   try{
-    $order->setStatusCodeByPagseguroStatus("32");
+    $order->setStatusCodeByPagseguroStatus($order);
   } catch(\Exception $e){
     Mail::send(new App\Mail\ErrorMail("Error: " . $e->getMessage() ));
   }
