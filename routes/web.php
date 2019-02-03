@@ -120,6 +120,11 @@ Route::get('sendhtmlemail', function() {
 Route::get('teste', function() {
   $orderId=2;//temporario
   $order = App\Entities\Order::find($orderId);
-  // dd($order);
-  return view("mails.pagseguro.statusPago", [ "order" => $order ]);
+  try{
+    $order->setStatusCodeByPagseguroStatus("32");
+  } catch(\Exception $e){
+    Mail::send(new App\Mail\ErrorMail("Error: " . $e->getMessage() ));
+  }
+  dd($order->status);
+  // return view("mails.pagseguro.statusPago", [ "order" => $order ]);
 });

@@ -26,13 +26,14 @@ class Order extends Model
     }
     public function setStatusCodeByPagseguroStatus($pagseguroStatus){
 
-        $status = [
+        $statusPagseguroList = [
             2 =>  self::STATUS_PENDENTE,
             3 =>  self::STATUS_PAGO,
             7 =>  self::STATUS_CANCELADO,
-        ][$pagseguroStatus];
-        if(is_null($status))
-          throw new Exception("Status Pagseguro Desconhecido", 1);
+        ];
+        if(!in_array($pagseguroStatus, array_keys($statusPagseguroList)))
+          throw new \Exception("Status Pagseguro Desconhecido - status $pagseguroStatus informado.", 1);
+        $status = $statusPagseguroList[$pagseguroStatus];
 
         $this->status = $status;
     }

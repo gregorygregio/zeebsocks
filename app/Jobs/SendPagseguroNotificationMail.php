@@ -43,8 +43,15 @@ class SendPagseguroNotificationMail implements ShouldQueue
             if(is_null($order))
               throw new \Exception("Não existe pedido com id $orderId !");
 
-            $order->setStatusCodeByPagseguroStatus($information->getStatus());
-            $order->save();
+
+            try {
+              $order->setStatusCodeByPagseguroStatus($information->getStatus());
+              $order->save();
+            } catch (\Exception $e) {
+                throw new \Exception($e->getMessage() . "<br>" . json_encode($information));
+            }
+
+
             $client = $order->client;
 
 
@@ -53,8 +60,7 @@ class SendPagseguroNotificationMail implements ShouldQueue
             Mail::to($client->email, $client->name)
             ->send(new PagseguroPagoMail($order));
           } catch(\Exception $e){
-            Mail::to("suporte@zeebsocks.com", "ZeebError")
-            ->send(new PagseguroPagoMail("Error: " . $e->getMessage()));
+            Mail::send(new App\Mail\ErrorMail("Error: " . $e->getMessage()));
           }
       }
 }
