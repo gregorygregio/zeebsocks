@@ -47,6 +47,7 @@ class SendPagseguroNotificationMail implements ShouldQueue
 
             try {
               var_dump("inicio try");
+                var_dump($information);
               $order->setStatusCodeByPagseguroStatus($information->getStatus());
               var_dump("status devidadmente setado");
               $order->save();
