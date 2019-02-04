@@ -19,7 +19,7 @@
 
                 <div class="col-md-4 col-xs-12">
                     <div class="product-img-displayer">
-                        <img src="{{ asset("/storage/products/" . $product->type_r->type . "/"  . $product->main_image) }}" />
+                        <img src="{{ $product->getProductImagesPath() }}" />
                     </div>
                 </div>
 

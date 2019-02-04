@@ -6,6 +6,6 @@
       <div class="product-price">
         {{$product->price}}
       </div>
-      <img src="{{ asset("/storage/products/" . $product->type_r->type . "/"  . $product->main_image) }}" />
+      <img src="{{ $product->getProductImagesPath() }}" />
   </div>
 </a>

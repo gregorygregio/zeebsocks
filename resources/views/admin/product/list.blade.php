@@ -47,7 +47,7 @@
                           <td class="product-name">{{ $product->name }}</td>
                           <td>{{ $product->url_id }}</td>
                           <td>{{ $product->getCreationData() }}</td>
-                          <td><img class="product-img" src="{{ asset("/storage/products/thumbs/" . $product->type_r->type . "/"  . $product->main_image) }}" /></td>
+                          <td><img class="product-img" src="{{ $product->getProductThumbPath() }}" /></td>
                           <td>
                             <a href="{{ route("admin.products.edit", $product->id) }}">
                               <i class="fa fa-wrench"></i>

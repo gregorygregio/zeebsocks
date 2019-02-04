@@ -33,7 +33,7 @@
                         <div class="col-lg-3 col-md-4 col-xs-12">
                             <a href="{{ url("/product/" . $product->url_id) }}">
                                 <div class="product-box product-exibition">
-                                    <img class="product-img" src="{{ asset("/storage/products/thumbs/" . $product->type_r->type . "/"  . $product->main_image) }}" />
+                                    <img class="product-img" src="{{ $product->getProductThumbPath() }}" />
                                     <div class="product-description">{{ $product->name  }}</div>
                                     <div class="product-price">R$ {{ $product->price  }}</div>
                                 </div>

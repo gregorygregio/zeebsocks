@@ -64,7 +64,7 @@
                       <input type="hidden" id="imageUpdated" name="image_updated" value="0">
                       <button id="btnAlterarImagem" class="btn btn-warning">Alterar Imagem</button>
                     </div>
-                      <img class="product-main-img" src="{{ asset("/storage/products/" . $product->type_r->type . "/"  . $product->main_image) }}" />
+                      <img class="product-main-img" src="{{ $product->getProductImagesPath() }}" />
 
                     <div class="form-group">
                       <button class="btn btn-success pull-right">Salvar <i class="fa fa-save"></i></button>

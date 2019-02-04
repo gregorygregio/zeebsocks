@@ -48,4 +48,12 @@ class Product extends Model
       \Illuminate\Support\Facades\Storage::put('public/products/thumbs/' . $this->type_r->type . "/" . $imageName, $img->fit(200)->stream($extension));
       //$img->save('storage/products/thumbs/' . $this->type_r->type . "/" . $imageName);
     }
+
+    public function getProductImagesPath(){
+        return asset("/storage/products/" . $this->type_r->type . "/"  . $this->main_image);
+    }
+
+    public function getProductThumbPath(){
+        return asset("/storage/products/thumbs/" . $this->type_r->type . "/"  . $this->main_image);
+    }
 }
