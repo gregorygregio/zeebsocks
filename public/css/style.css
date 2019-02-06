@@ -141,3 +141,9 @@ footer .zeeb-tiger {
 footer .logo {
     height: 260px;
 }
+
+.label-as-badge {
+    border-radius: .6em;
+    padding: .1em .5em .3em;
+    font-size: 68%;
+}   

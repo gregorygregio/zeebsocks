@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Order;
+use App\Entities\Cart;
 use App\Entities\OrderItem;
 use App\Entities\Product;
 use App\Services\FreteService;
@@ -16,7 +17,7 @@ class CartController extends Controller
 
 
     public function index() {
-        $cart = $this->getCart();
+        $cart = Cart::getCart();
 
         $viewItems = [ "cart" => $cart ];
 
@@ -41,7 +42,7 @@ class CartController extends Controller
 
 
 
-        $cart = $this->getCart();
+        $cart = Cart::getCart();
 
         foreach ($cart->items as $item){
             if($item->product_id === $product->id)
@@ -62,7 +63,7 @@ class CartController extends Controller
 
 
     public function removeItem($id){
-        $cart = $this->getCart();
+        $cart = Cart::getCart();
 
         $foundItemKey = $cart->items->search(function($item) use($id){
             return $item->product_id == $id;
@@ -77,8 +78,4 @@ class CartController extends Controller
 
     }
 
-
-    private function getCart(){
-        return session()->has('cart') ? session()->get('cart') : new Order;
-    }
 }

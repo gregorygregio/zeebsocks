@@ -78,7 +78,15 @@
                                 </ul>
                             </li>
                         @endguest
-                        <li class="cart-option"><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart "></i></a></li>
+                        <li class="cart-option"><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart "></i>
+                            @if(App\Entities\Cart::countItems() > 0)
+                                <div class="pull-right">
+                                    <span class="label label-pill label-primary label-as-badge">
+                                        {{ App\Entities\Cart::countItems() }}
+                                    </span>
+                                </div>
+                            @endif
+                        </a></li>
 
 
                     </ul>
