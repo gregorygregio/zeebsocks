@@ -23,6 +23,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home/contactmail', 'HomeController@sendContactMail')->name('contactmail');
 
+
+Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('login.facebook');
+Route::post('auth/facebook/register', 'Auth\LoginController@registerFacebookUser')->name('register.facebook');
+Route::get('auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
+
+
+
 Route::get('/product/{product}', "HomeController@showProduct");
 
 

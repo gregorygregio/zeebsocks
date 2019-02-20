@@ -8,14 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use laravel\pagseguro\Platform\Laravel5\PagSeguro;
 use App\Entities\Order;
+use App\Entities\Cart;
 
 class PedidoController extends Controller
 {
-
-
-    private function getCart(){
-        return session()->has('cart') ? session()->get('cart') : new Order;
-    }
 
 
     public function confirmAddress(){
@@ -23,7 +19,7 @@ class PedidoController extends Controller
         $address = $user->address;
 
 
-        if( $this->getCart()->isEmpty() ) {
+        if( Cart::getCart()->isEmpty() ) {
             return redirect()->route("cart");
         }
 
@@ -39,7 +35,7 @@ class PedidoController extends Controller
             return redirect()->route("pedido.address");
         }
 
-        $cart = $this->getCart();
+        $cart = Cart::getCart();
 
         if( $cart->isEmpty() ) {
             return redirect()->route("cart");
@@ -61,7 +57,7 @@ class PedidoController extends Controller
         $user = Auth::user();
         $address = $user->address;
 
-        $cart = $this->getCart();
+        $cart = Cart::getCart();
         $frete = FreteService::calcularFrete($address->zipcode);
 
         $items_total = $cart->getTotalPrice();

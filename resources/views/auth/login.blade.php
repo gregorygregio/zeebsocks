@@ -74,6 +74,16 @@
                                             Cadastrar-se
                                         </a>
                                     </div>
+                                    <div class="col-md-8 col-md-offset-2 text-center">
+                                        <a class="btn btn-link" href="{{ route('login.facebook') }}">
+                                            <img src="{{ asset("/images/loginFacebookButton.png") }}" class="logo"/>
+                                        </a>
+                                        @if(session('error'))
+                                            <div class="alert alert-danger text-center">
+                                                {{ session('error')  }}
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -182,6 +182,8 @@ return [
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -233,6 +235,7 @@ return [
         'PagSeguro' => laravel\pagseguro\Platform\Laravel5\PagSeguro::class,
         'Correios'    => Cagartner\CorreiosConsulta\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
