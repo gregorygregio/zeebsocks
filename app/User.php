@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Services\BrazilianMasks;
+use App\Utils\Utils;
 
 class User extends Authenticatable
 {
@@ -49,13 +50,13 @@ class User extends Authenticatable
 
     public function setCpfAttribute($value)
     {
-        $this->attributes['cpf'] = preg_replace('/[^0-9]/s', '', $value);
+        $this->attributes['cpf'] = Utils::removeFormatations($value);
     }
 
 
     public function setPhoneAttribute($value)
     {
-        $this->attributes['phone'] = preg_replace('/[^0-9]/s', '', $value);
+        $this->attributes['phone'] = Utils::removeFormatations($value);
     }
 
     public function getCpfAttribute($value)
@@ -88,6 +89,16 @@ class User extends Authenticatable
     public function getFirstName(){
       $splitedName =explode(" ", $this->name);
       return array_shift($splitedName);
+    }
+
+    public function isEmailAlreadyRegistered() {
+        $doesExist = self::where("email", $this->email)->get();
+        return (count($doesExist) > 0);
+    }
+
+    public function isCPFAlreadyRegistered() {
+        $doesExist = self::where("cpf", Utils::removeFormatations($this->cpf))->get();
+        return (count($doesExist) > 0);
     }
 
 }

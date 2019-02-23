@@ -10,6 +10,8 @@ use Socialite;
 use DB;
 use Auth;
 use Illuminate\Http\Request;
+use App\Exceptions\User\DuplicatedEmail;
+use App\Exceptions\User\DuplicatedCPF;
 
 class LoginController extends Controller
 {
@@ -64,7 +66,7 @@ class LoginController extends Controller
 
             if($existingUser = SocialUser::getUserIfExists($create['facebook_id'])){
               Auth::loginUsingId($existingUser->id);
-              return redirect($this->redirectTo);
+              return redirect($redirectTo);
             }
 
             $userModel = new User($create);
@@ -86,8 +88,19 @@ class LoginController extends Controller
         try {
           $data = $request->all();
 
+
+
           DB::transaction(function () use($data) {
               $user = new User($data);
+
+              if($user->isEmailAlreadyRegistered()) {
+                throw new DuplicatedEmail("Este e-mail já foi cadastrado ! ({$user->email})");
+              }
+
+              if($user->isCPFAlreadyRegistered()) {
+                throw new DuplicatedCPF("Este CPF já foi cadastrado ! ({$user->cpf})");
+              }
+
               $user->password = hash("sha256", "9dcdea2899ee01c4d3ba9ff86423ff099661632aabdec43574a8206abded4203");
               $user->save();
               SocialUser::create([ "social_id" => $data["social_id"], "user_id" => $user->id ]);
@@ -95,8 +108,12 @@ class LoginController extends Controller
           });
 
 
+          return redirect($this->redirectTo);
+
+        } catch (DuplicatedEmail | DuplicatedCPF $e) {
+            return redirect("/login")->with([ "error" => $e->getMessage() ]);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            dd($e);
             return redirect("/login")->with([ "error" => "Ocorreu um erro inesperado ao tentar registrar usuário !" ]);
         }
     }
