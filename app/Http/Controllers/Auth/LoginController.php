@@ -66,7 +66,7 @@ class LoginController extends Controller
 
             if($existingUser = SocialUser::getUserIfExists($create['facebook_id'])){
               Auth::loginUsingId($existingUser->id);
-              return redirect($redirectTo);
+              return redirect($this->redirectTo);
             }
 
             $userModel = new User($create);
@@ -101,7 +101,7 @@ class LoginController extends Controller
                 throw new DuplicatedCPF("Este CPF já foi cadastrado ! ({$user->cpf})");
               }
 
-              $user->password = hash("sha256", "9dcdea2899ee01c4d3ba9ff86423ff099661632aabdec43574a8206abded4203");
+              $user->password = hash("sha256", rand(11111, 99999) . "9dcdea2899ee01c4d3ba9ff86423ff099661632aabdec43574a8206abded4203" . rand(11111, 99999));
               $user->save();
               SocialUser::create([ "social_id" => $data["social_id"], "user_id" => $user->id ]);
               Auth::loginUsingId($user->id);
